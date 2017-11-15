@@ -91,6 +91,25 @@ describe('application logic', () => {
 				entries: List.of('Citizen Kane', 'Trainspotting', '28 Days Later')
 			}));
 		});
+
+		it('marks the winner when just one entry is left', ()=>{
+			const state = Map({
+				vote: Map({
+					pair: List.of('Trainspotting', '28 Days Later'),
+					tally: Map({
+						'Trainspotting': 4,
+						'28 Days Later': 2
+					})
+				}),
+				entries: List()
+			});
+
+			const nextState = next(state);
+
+			expect(nextState).to.equal(Map({
+				winner: 'Trainspotting'
+			}));
+		});
 	});
 
 	// UNIT TESTS - vote()
