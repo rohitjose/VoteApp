@@ -3,7 +3,7 @@ import {List, Map} from 'immutable'
 
 describe('immutability', () => {
 
-	// Sample test case
+	// IMMUTABLE NUMBER
 	describe('a number', () => {
 
 		function increment(currentState) {
@@ -20,7 +20,7 @@ describe('immutability', () => {
 		});
 	});
 
-	// Immutable List
+	// IMMUTABLE LIST
 	describe('a list', () => {
 
 		function addMovie(currentState, movie) {
@@ -36,7 +36,7 @@ describe('immutability', () => {
 		});
 	});
 
-	// Immutable Tree
+	// IMMUTABLE TREE
 	describe('a tree', () => {
 
 		function addMovie(currentState, movie) {
