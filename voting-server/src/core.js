@@ -7,7 +7,8 @@ export function setEntries(state, entries) {
 
 // Generates the next state
 export function next(state) {
-	const entries = state.get('entries');
+	const entries = state.get('entries')
+		.concat(getWinners(state.get('vote')));
 
 	return state.merge({
 		vote: Map({
@@ -18,9 +19,22 @@ export function next(state) {
 }
 
 // Generates vote count based on votes
-export function vote(state, entry){
+export function vote(state, entry) {
 	return state.updateIn(
-		['vote','tally', entry],
+		['vote', 'tally', entry],
 		0,
 		tally => tally + 1);
+}
+
+// Generates the winners of a vote
+function getWinners(vote) {
+	if (!vote) return [];
+
+	const [a, b] = vote.get('pair');
+	const aVotes = vote.getIn(['tally', a], 0);
+	const bVotes = vote.getIn(['tally', b], 0);
+
+	if (aVotes > bVotes) return [a];
+	else if (aVotes < bVotes) return [b];
+	else return [a, b];
 }
