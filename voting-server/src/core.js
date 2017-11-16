@@ -1,5 +1,7 @@
 import {List, Map} from 'immutable';
 
+export const INITIAL_STATE = Map();
+
 // Initializes the data structure
 export function setEntries(state, entries) {
 	return state.set('entries', List(entries));
@@ -44,4 +46,3 @@ function getWinners(vote) {
 	else return [a, b];
 }
 
-export const INITIAL_STATE = Map();
